@@ -1,0 +1,38 @@
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "postgresql"
+  url      = env("DATABASE_URL")
+}
+
+model Book {
+  id          String   @id @default(cuid())
+  title       String
+  author      String
+  price       Float
+  image       String
+  description String
+  rating      Float
+  pages       Int
+  year        Int
+  orders      Order[]
+}
+
+model Order {
+  id           String   @id @default(cuid())
+  customerName String
+  email        String?  // Optional gmail
+  phone        String
+  city         String
+  address      String   // Using this for Full Address
+  bookId       String?
+  book         Book?    @relation(fields: [bookId], references: [id], onDelete: SetNull)
+  bookTitle    String   
+  quantity     Int
+  totalPrice   Float
+  status       String   @default("pending") // pending, accepted, rejected
+  date         String   
+  createdAt    DateTime @default(now())
+}

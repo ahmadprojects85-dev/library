@@ -1,0 +1,280 @@
+@import "tailwindcss";
+
+@font-face {
+  font-family: 'Sarchia Honrawa';
+  src: url('/fonts/sarchia-honrawa.woff2') format('woff2'),
+       url('/fonts/sarchia-honrawa.ttf') format('truetype');
+  font-weight: normal;
+  font-style: normal;
+  font-display: swap;
+}
+
+@theme inline {
+  --color-background: var(--background);
+  --color-foreground: var(--foreground);
+  --color-card: var(--card);
+  --color-card-hover: var(--card-hover);
+  --color-border: var(--border-color);
+  --color-muted: var(--muted);
+  --color-accent: var(--accent);
+  
+  --font-sans: var(--font-outfit), system-ui, sans-serif;
+  --font-brand: var(--font-pinyon), cursive;
+  --font-arabic: var(--font-unimahan), 'Sarchia Honrawa', serif;
+}
+
+:root {
+  /* Light Mode - Total Transparency */
+  --background: rgba(253, 251, 247, 0.01);
+  --foreground: #2D1B10;
+  --card: rgba(255, 255, 255, 0.01); 
+  --card-hover: rgba(255, 255, 255, 0.02);
+  --border-color: rgba(45, 27, 16, 0.05);
+  --muted: #5D4336; 
+  --accent: #906948; 
+  --accent-gold: #B8860B; 
+  --accent-hover: #7F5539;
+  --action: #2D1B10;
+  
+  --shadow-sm: none;
+  --shadow-lg: none;
+  
+  --glass: rgba(253, 251, 247, 0.01);
+  --glass-border: rgba(45, 27, 16, 0.02);
+}
+
+[data-theme='dark'] {
+  /* Dark Mode - Total Transparency */
+  --background: rgba(20, 12, 10, 0.01);
+  --foreground: #FDFBF7;
+  --card: rgba(0, 0, 0, 0.01);
+  --card-hover: rgba(0, 0, 0, 0.02);
+  --border-color: rgba(253, 251, 247, 0.05);
+  --muted: #D7CCC8; 
+  --accent: #FFD54F; 
+  --accent-gold: #FFD700;
+  --action: #FFD54F;
+  
+  --glass: rgba(20, 12, 10, 0.01);
+  --glass-border: rgba(253, 251, 247, 0.02);
+}
+
+* {
+  box-sizing: border-box;
+  padding: 0;
+  margin: 0;
+}
+
+html {
+  scroll-behavior: smooth;
+  background: var(--background); /* Fallback/Bottom layer */
+}
+
+body {
+  background: transparent;
+  color: var(--foreground);
+  font-family: var(--font-sans);
+  min-height: 100vh;
+  -webkit-font-smoothing: antialiased;
+  position: relative;
+  overflow-x: hidden;
+}
+
+body::before {
+  display: none; /* Remove legacy mesh background to prevent overlap */
+}
+
+h1, h2, h3, h4 {
+  font-family: var(--font-sans);
+  letter-spacing: -0.02em;
+}
+
+.font-brand {
+  font-family: var(--font-brand) !important;
+}
+
+.text-pop {
+  /* Strong white/cream glow to isolate the dark brown text from the busy Starry Night background */
+  text-shadow: 0 0 10px rgba(255, 255, 255, 1), 
+               0 0 20px rgba(255, 255, 255, 0.9),
+               0 1px 2px rgba(255, 255, 255, 1);
+}
+
+[data-theme='dark'] .text-pop {
+  /* Intense black drop shadow for light text against glowing background elements */
+  text-shadow: 0 2px 15px rgba(0, 0, 0, 0.9), 0 1px 4px rgba(0,0,0,1);
+}
+
+/* Luxury Editorial Elements */
+.glass {
+  background: var(--card);
+  border: 1px solid var(--border-color);
+  backdrop-filter: blur(40px) saturate(180%);
+}
+
+.glass-card {
+  background: var(--card);
+  border: 1px solid var(--border-color);
+  backdrop-filter: blur(40px) saturate(180%);
+  transition: all 0.4s ease;
+}
+
+.glass-card:hover {
+  transform: translateY(-4px);
+  box-shadow: var(--shadow-lg);
+  background: var(--card-hover);
+}
+
+/* Custom UI Elements */
+.badge {
+  padding: 6px 14px;
+  border-radius: 99px;
+  font-size: 11px;
+  font-weight: 800;
+  text-transform: uppercase;
+  letter-spacing: 0.08em;
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+}
+
+.badge-pending {
+  background: rgba(245, 158, 11, 0.1);
+  color: #d97706;
+}
+
+.badge-completed {
+  background: rgba(16, 185, 129, 0.1);
+  color: #059669;
+}
+
+/* Premium Inputs */
+.form-input {
+  width: 100%;
+  padding: 12px 18px;
+  border-radius: 0px; /* Luxury sharp edges */
+  border: 1px solid var(--border-color);
+  background: var(--card); /* Ensure contrast */
+  color: var(--foreground) !important; /* Force visibility */
+  font-size: 14px;
+  font-weight: 500;
+  transition: all 0.3s ease;
+  outline: none;
+  box-shadow: none;
+}
+
+.form-input:focus {
+  border-color: var(--accent);
+  background: var(--background);
+}
+
+.form-input::placeholder {
+  color: var(--muted);
+  opacity: 0.5;
+}
+
+/* Buttons */
+.btn-primary {
+  background: #2D1B10;
+  color: #FDFBF7;
+  padding: 12px 28px;
+  font-weight: 800;
+  font-size: 13px;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  transition: all 0.3s ease;
+  border: 1px solid #2D1B10;
+  cursor: pointer;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.3);
+  font-family: var(--font-sans);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  text-shadow: none !important;
+}
+
+.btn-primary:hover {
+  background: rgba(45, 27, 16, 0.8);
+  color: #FDFBF7;
+  transform: scale(1.02);
+}
+
+[data-theme='dark'] .btn-primary {
+  background: #FFD54F;
+  color: #1A0E08;
+  border: 1px solid #FFD54F;
+}
+
+[data-theme='dark'] .btn-primary:hover {
+  background: rgba(255, 213, 79, 0.85);
+  color: #1A0E08;
+}
+
+.btn-action {
+  background: #2D1B10;
+  color: #FDFBF7;
+  padding: 14px 28px;
+  font-weight: 500;
+  font-size: 14px;
+  letter-spacing: 0.02em;
+  transition: all 0.3s ease;
+  border: 1px solid #2D1B10;
+  cursor: pointer;
+  box-shadow: none;
+}
+
+.btn-action:hover {
+  opacity: 0.8;
+}
+
+[data-theme='dark'] .btn-action {
+  background: #FFD54F;
+  color: #1A0E08;
+  border: 1px solid #FFD54F;
+}
+
+/* Charts & Dashboard components */
+.chart-container {
+  background: white;
+  border-radius: 32px;
+  padding: 32px;
+  box-shadow: var(--shadow-lg);
+  border: 1px solid var(--border-color);
+}
+
+/* Scrollbar */
+::-webkit-scrollbar {
+  width: 8px;
+}
+
+::-webkit-scrollbar-track {
+  background: transparent;
+}
+
+::-webkit-scrollbar-thumb {
+  background: rgba(0, 0, 0, 0.05);
+  border-radius: 20px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: var(--accent);
+}
+
+/* Van Gogh Background & Transition */
+.blur-transition {
+  /* Content remains sharp, no more blur here */
+  opacity: 0.95; 
+  transition: opacity 4s ease;
+  pointer-events: none;
+}
+
+.content-wrapper {
+  transition: opacity 4s ease;
+  position: relative;
+  z-index: 1;
+}
+
+/* Pure Art Experience: No overlay on main */
+main::before {
+  display: none;
+}

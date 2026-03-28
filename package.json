@@ -1,0 +1,39 @@
+{
+  "name": "libary",
+  "version": "0.1.0",
+  "private": true,
+  "scripts": {
+    "dev": "next dev",
+    "build": "next build",
+    "start": "next start",
+    "lint": "eslint"
+  },
+  "dependencies": {
+    "@types/uuid": "^10.0.0",
+    "chart.js": "^4.5.1",
+    "framer-motion": "^12.38.0",
+    "gsap": "^3.14.2",
+    "lucide-react": "^1.7.0",
+    "next": "16.2.1",
+    "react": "19.2.4",
+    "react-chartjs-2": "^5.3.1",
+    "react-dom": "19.2.4",
+    "uuid": "^13.0.0"
+  },
+  "devDependencies": {
+    "@prisma/client": "^5.10.2",
+    "@tailwindcss/postcss": "^4",
+    "@types/node": "^20",
+    "@types/react": "^19",
+    "@types/react-dom": "^19",
+    "eslint": "^9",
+    "eslint-config-next": "16.2.1",
+    "prisma": "^5.10.2",
+    "tailwindcss": "^4",
+    "tsx": "^4.21.0",
+    "typescript": "^5"
+  },
+  "prisma": {
+    "seed": "tsx prisma/seed.ts"
+  }
+}
