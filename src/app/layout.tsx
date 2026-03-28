@@ -4,10 +4,9 @@ import localFont from "next/font/local";
 import "./globals.css";
 import { ThemeProvider } from "@/components/ThemeProvider";
 import { ToastProvider } from "@/components/Toast";
-import Navbar from "@/components/Navbar";
-import Footer from "@/components/Footer";
 import LivingBackground from "@/components/LivingBackground";
 import ThemeWrapper from "@/components/ThemeWrapper";
+import ConditionalLayout from "@/components/ConditionalLayout";
 
 const inter = Inter({
   subsets: ["latin"],
@@ -48,9 +47,9 @@ export default function RootLayout({
           <ToastProvider>
             <LivingBackground />
             <ThemeWrapper>
-              <Navbar />
-              <main style={{ flex: 1 }}>{children}</main>
-              <Footer />
+              <ConditionalLayout>
+                {children}
+              </ConditionalLayout>
             </ThemeWrapper>
           </ToastProvider>
         </ThemeProvider>

@@ -1,6 +1,7 @@
 'use client';
 
 import { useEffect, useRef, useCallback } from 'react';
+import { usePathname } from 'next/navigation';
 import { useTheme } from './ThemeProvider';
 import gsap from 'gsap';
 
@@ -144,6 +145,7 @@ function loadTexture(gl: WebGLRenderingContext, img: HTMLImageElement): WebGLTex
 // ─── Component ──────────────────────────────────────────────────────────────
 
 export default function LivingBackground() {
+  const pathname = usePathname();
   const { theme, isTransitioning } = useTheme();
   const canvasRef = useRef<HTMLCanvasElement>(null);
   const glRef = useRef<WebGLRenderingContext | null>(null);
@@ -155,6 +157,16 @@ export default function LivingBackground() {
   const isReadyRef = useRef(false);
   const lightTexRef = useRef<WebGLTexture | null>(null);
   const darkTexRef = useRef<WebGLTexture | null>(null);
+
+  // Don't render on admin pages
+  const isAdmin = pathname?.startsWith('/admin');
+
+  // Cleanup WebGL when navigating to admin
+  useEffect(() => {
+    if (isAdmin && rafRef.current) {
+      cancelAnimationFrame(rafRef.current);
+    }
+  }, [isAdmin]);
 
   // ── Initialize WebGL ─────────────────────────────────────────────────────
   const initGL = useCallback((canvas: HTMLCanvasElement) => {
@@ -304,6 +316,8 @@ export default function LivingBackground() {
     rafRef.current = requestAnimationFrame(render);
     return () => cancelAnimationFrame(rafRef.current);
   }, []);
+
+  if (isAdmin) return null;
 
   return (
     <canvas

@@ -37,20 +37,51 @@ export default function AdminLayout({ children }: { children: React.ReactNode })
 
   if (pathname === '/admin/login') {
     return (
-      <main style={{ minHeight: '100vh', background: 'var(--background)' }}>
+      <main style={{ 
+        minHeight: '100vh', 
+        // @ts-ignore
+        '--background': '#f8f6f3',
+        '--foreground': '#2D1B10',
+        '--card': '#ffffff',
+        '--card-hover': '#f5f3f0',
+        '--border-color': 'rgba(45, 27, 16, 0.12)',
+        '--muted': '#5D4336',
+        '--accent': '#906948',
+        '--glass': 'rgba(255,255,255,0.95)',
+        '--shadow-lg': '0 8px 32px rgba(0,0,0,0.06)',
+        background: '#f8f6f3',
+      } as React.CSSProperties}>
         {children}
       </main>
     );
   }
 
   return (
-    <div style={{ display: 'flex', minHeight: '100vh', background: 'var(--background)' }}>
+    <div style={{ 
+      display: 'flex', 
+      minHeight: '100vh',
+      // Override CSS variables for admin with solid, opaque colors
+      // @ts-ignore
+      '--background': '#f8f6f3',
+      '--foreground': '#2D1B10',
+      '--card': '#ffffff',
+      '--card-hover': '#f5f3f0',
+      '--border-color': 'rgba(45, 27, 16, 0.12)',
+      '--muted': '#5D4336',
+      '--accent': '#906948',
+      '--accent-gold': '#B8860B',
+      '--glass': 'rgba(255,255,255,0.95)',
+      '--glass-border': 'rgba(45, 27, 16, 0.1)',
+      '--shadow-sm': '0 2px 8px rgba(0,0,0,0.04)',
+      '--shadow-lg': '0 8px 32px rgba(0,0,0,0.06)',
+      background: '#f8f6f3',
+    } as React.CSSProperties}>
       {/* Sidebar */}
       <motion.aside
         animate={{ width: collapsed ? '80px' : '280px' }}
         transition={{ type: 'spring', damping: 25, stiffness: 200 }}
         style={{
-          background: 'var(--card)',
+          background: '#ffffff',
           borderRight: '1px solid var(--border-color)',
           padding: '32px 16px',
           display: 'flex',

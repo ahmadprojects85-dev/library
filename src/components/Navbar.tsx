@@ -108,7 +108,6 @@ export default function Navbar() {
 
           {/* Desktop Nav */}
           <div style={{
-            display: 'flex',
             alignItems: 'center',
             justifyContent: 'center',
             gap: '32px',
@@ -137,13 +136,9 @@ export default function Navbar() {
           </div>
 
           {/* Right actions */}
-          <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'flex-end', gap: '16px' }}>
-            {/* Removed Search Button */}
-
-            {/* Theme Toggle */}
+          <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'flex-end', gap: '12px' }}>
+            {/* Theme Toggle - always visible */}
             <VanGoghToggle />
-
-            {/* Removed Account Link */}
 
             {/* Mobile menu toggle */}
             <button
@@ -206,7 +201,8 @@ export default function Navbar() {
                   {link.label}
                 </Link>
               ))}
-              {/* Removed Account Link Mobile */}
+
+              {/* Removed - toggle is now in top bar */}
             </motion.div>
           )}
         </AnimatePresence>

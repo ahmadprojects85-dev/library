@@ -9,19 +9,26 @@ export default function VanGoghToggle() {
   return (
     <button
       onClick={toggleTheme}
+      aria-label={theme === 'dark' ? 'Switch to light mode' : 'Switch to dark mode'}
       style={{
-        width: '56px',
-        height: '56px',
-        borderRadius: '20px',
+        width: '48px',
+        height: '48px',
+        borderRadius: '16px',
         display: 'flex',
         alignItems: 'center',
         justifyContent: 'center',
         cursor: 'pointer',
-        background: 'rgba(255, 255, 255, 0.05)',
+        background: theme === 'dark' 
+          ? 'rgba(255, 213, 79, 0.15)' 
+          : 'rgba(45, 27, 16, 0.08)',
         backdropFilter: 'blur(10px)',
-        border: '1px solid var(--border-color)',
+        border: theme === 'dark'
+          ? '1.5px solid rgba(255, 213, 79, 0.3)'
+          : '1.5px solid rgba(45, 27, 16, 0.15)',
         overflow: 'hidden',
-        boxShadow: '0 4px 20px rgba(0, 0, 0, 0.1)',
+        boxShadow: theme === 'dark'
+          ? '0 4px 20px rgba(255, 213, 79, 0.15)'
+          : '0 4px 20px rgba(45, 27, 16, 0.08)',
         transition: 'all 0.3s ease',
       }}
     >
